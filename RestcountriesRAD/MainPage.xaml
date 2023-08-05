@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="RestcountriesRAD.MainPage">
+    <!-- MainPage.xaml -->
+   
+        <StackLayout>
+            <Picker x:Name="regionPicker" Title="Select Region">
+                <Picker.ItemsSource>
+                    <x:Array Type="{x:Type local:Region}">
+                        <local:Region Name="Africa" />
+                        <local:Region Name="Americas" />
+                        <local:Region Name="Asia" />
+                        <local:Region Name="Europe" />
+                        <local:Region Name="Oceania" />
+                    </x:Array>
+                </Picker.ItemsSource>
+                <Picker.ItemDisplayBinding>
+                    <Binding Path="Name" />
+                </Picker.ItemDisplayBinding>
+            </Picker>
+
+            <ListView x:Name="countriesListView" ItemSelected="OnCountrySelected">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <StackLayout Orientation="Horizontal" Padding="10">
+                                <Image Source="{Binding Flag}" WidthRequest="40" HeightRequest="30" />
+                                <Label Text="{Binding Name}" VerticalOptions="Center" />
+                            </StackLayout>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+
+            <maps:MapView x:Name="mapView" IsShowingUser="true" HeightRequest="400" />
+        </StackLayout>
+    </ContentPage>
+
